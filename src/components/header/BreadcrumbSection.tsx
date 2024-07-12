@@ -42,8 +42,6 @@ export default function BreadcrumbSection() {
     })
     .map((name) => name.replace(/\//g, ""));
 
-  console.log(currentPathNamesTranslated);
-
   const maxVisibleItems = 3;
   const invisibleItems =
     currentPathNamesTranslated.length > maxVisibleItems
