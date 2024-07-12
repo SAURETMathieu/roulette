@@ -1,0 +1,66 @@
+{
+  "TitlePages": {
+    "home": "Home - Roulette",
+    "tables": "Tables",
+    "dealers": "Dealers",
+    "draws": "Draws"
+  },
+  "LocaleMetadata":{
+    "title": "Roulette",
+    "name": "Template Application Nextjs",
+    "description": "Template Application Nextjs with TailwindCSS, TypeScript, ESLint, Prettier, React, i18next, Dark Mode, Notifications, SEO, 2 Navigation models."
+  },
+  "IndexPage": {
+    "title": "Nextjs template app",
+    "description": "This is a template app made with Nextjs, Tailwindcss, TypeScript, ESLint, Prettier, React, i18next, Dark Mode, Notifications, SEO, 2 Navigation models."
+  },
+  "Navbar": {
+    "ariaGithub": "Link to my Github",
+    "signout": "Sign out",
+    "signin": "Sign in",
+    "signup": "Sign up",
+    "ariaSignin": "Link to sign in page",
+    "ariaSignup": "Link to sign up page",
+    "ariaSupport": "Link to support page",
+    "ariaSettings": "Link to settings page",
+    "ariaProfile": "Link to profile page",
+    "ariaLogoLink": "Link to home page",
+    "avatarAlt": "User avatar",
+    "appLogoAlt": "Logo of the application",
+    "profileLinkLabel": "Profile",
+    "settingsLinkLabel": "Settings",
+    "supportLinkLabel": "Support",
+    "menuLabel": "Menu",
+    "openMenuLabel": "Open burger menu",
+    "closeMenuLabel": "Close burger menu"
+  },
+  "ThemeSwitcher": {
+    "ariaLabel": "Switch theme",
+    "ariaLight": "Light theme",
+    "ariaLangage": "Change site language",
+    "ariaDark": "Dark theme",
+    "toggleTheme": "Toggle theme",
+    "ariaFrench": "Change site language to French",
+    "ariaEnglish": "Change site language to English"
+  },
+  "BurgerMenu": {
+    "ariaOpen": "Open the menu",
+    "ariaClose": "Close the menu"
+  },
+  "Footer": {
+    "text1": "All rights reserved.",
+    "text2": "Made with"
+  },
+  "Config": {
+    "home": "Home",
+    "tables": "Tables",
+    "dealers": "Dealers",
+    "draws": "Draws",
+    "sessions": "Sessions",
+    "settings": "Settings",
+    "support": "Support",
+    "profile": "Profile",
+    "description": "Application configuration",
+    "help": "Help"
+  }
+}
