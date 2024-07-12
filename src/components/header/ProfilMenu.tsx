@@ -8,20 +8,19 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
+import { createServer } from "@/src/lib/supabase/server";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import LogOutButton from "@/components/buttons/logoutButton";
 import NavigationLink from "@/components/link/NavigationLink";
 
-export default function ProfilMenu() {
+export default async function ProfilMenu() {
   const t = useTranslations("Navbar");
-  //const session = await auth();
-  const session = null;
+  const supabase = createServer();
+  const { data: session } = await supabase.auth.getUser();
 
-  //const urlImage: string = session?.user?.image ?? profilePlaceholder;
-  const urlImage = profilePlaceholder;
-  return session ? (
+  return session?.user ? (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
@@ -30,7 +29,7 @@ export default function ProfilMenu() {
           className="overflow-hidden rounded-full dark:border-none"
         >
           <Image
-            src={urlImage}
+            src={profilePlaceholder}
             width={36}
             height={36}
             alt={t("avatarAlt")}
@@ -41,8 +40,7 @@ export default function ProfilMenu() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>
-          {/* {session ? session.user?.email : "email@gmail.com"} */}
-          {session ? "" : "email@gmail.com"}
+          {session.user.email ?? "email@gmail.com"}
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <NavigationLink href="/profile" aria-label={t("ariaProfile")}>
