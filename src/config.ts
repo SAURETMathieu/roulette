@@ -1,65 +1,67 @@
-import { Pathnames } from 'next-intl/navigation';
+import { Pathnames } from "next-intl/navigation";
 
-export const defaultLocale = 'fr' as const;
-export const locales = ['fr', 'en'] as const;
+export const defaultLocale = "fr" as const;
+export const locales = ["fr", "en"] as const;
+
+export type RouteType = "public" | "auth" | "private" | "api";
 
 export const pathnames = {
-  '/': '/',
-  '/tables': {
-    en: '/tables',
-    fr: '/tables'
+  "/": "/",
+  "/tables": {
+    en: "/tables",
+    fr: "/tables",
   },
-  '/dealers': {
-    en: '/dealers',
-    fr: '/croupiers'
+  "/dealers": {
+    en: "/dealers",
+    fr: "/croupiers",
   },
-  '/session': {
-    en: '/session',
-    fr: '/session'
+  "/sessions": {
+    en: "/sessions",
+    fr: "/sessions",
   },
-  '/draws': {
-    en: '/draws',
-    fr: '/tirages'
+  "/draws": {
+    en: "/draws",
+    fr: "/tirages",
   },
-  '/help': {
-    en: '/help',
-    fr: '/aide'
+  "/help": {
+    en: "/help",
+    fr: "/aide",
   },
-  '/settings': {
-    en: '/settings',
-    fr: '/parametres'
+  "/settings": {
+    en: "/settings",
+    fr: "/parametres",
   },
-  '/about': {
-    en: '/about',
-    fr: '/a-propos'
+  "/about": {
+    en: "/about",
+    fr: "/a-propos",
   },
-  '/contact': {
-    en: '/contact',
-    fr: '/contact'
+  "/contact": {
+    en: "/contact",
+    fr: "/contact",
   },
-  '/login': {
-    en: '/login',
-    fr: '/connexion'
+  "/login": {
+    en: "/login",
+    fr: "/login",
   },
-  '/register': {
-    en: '/register',
-    fr: '/inscription'
+  "/register": {
+    en: "/register",
+    fr: "/inscription",
   },
-  '/forgot-password': {
-    en: '/forgot-password',
-    fr: '/forgot-password'
+  "/forgot-password": {
+    en: "/forgot-password",
+    fr: "/forgot-password",
   },
-  '/reset-password': {
-    en: '/reset-password',
-    fr: '/reset-password'
+  "/reset-password": {
+    en: "/reset-password",
+    fr: "/reset-password",
   },
-  '/profile': {
-    en: '/profile',
-    fr: '/profil'
+  "/profile": {
+    en: "/profile",
+    fr: "/profil",
   },
-  '/support': {
-    en: '/support',
-    fr: '/support'
+  "/support": {
+    en: "/support",
+    fr: "/support",
   },
 } satisfies Pathnames<typeof locales>;
 
