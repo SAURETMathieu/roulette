@@ -5,7 +5,7 @@ import { FormEvent, useState } from 'react';
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({ email: 'mathieu08800@hotmail.fr', password: '1234abcdEFGH*' });
-  const [error, setError] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -21,13 +21,7 @@ export default function LoginPage() {
     form.append('password', formData.password);
 
     const result = await action(form);
-
-    if (result?.error) {
-      setError(result.error);
-    } else {
-      // Gérer la redirection ou l'état après le succès
-      // Par exemple, rediriger l'utilisateur ou afficher un message de succès
-    }
+    setMessage(result?.message);
   };
 
   return (
@@ -38,7 +32,7 @@ export default function LoginPage() {
       <input id="password" name="password" type="password" value={formData.password} onChange={handleChange} required />
       <button type="submit">Log in</button>
       <button type="button" onClick={(e) => handleSubmit(e, signUpWithPassword)}>Sign up</button>
-      {error && <div className="error-toast">{error}</div>}
+      {message && <div className="error-toast">{message}</div>}
     </form>
   );
 }
