@@ -6,11 +6,10 @@ import { cookies } from 'next/headers';
 
 export const signInWithPassword = async (data: FormData) => {
 	const supabase = createServer();
-	const { error, data: test } = await supabase.auth.signInWithPassword({
+	const { error } = await supabase.auth.signInWithPassword({
 		email: data.get('email') as string,
 		password: data.get('password') as string,
 	});
-console.log(test);
 	if (error) {
 		return {
 			message: error.message,
@@ -25,6 +24,12 @@ export const signUpWithPassword = async (data: FormData) => {
 	const { error } = await supabase.auth.signUp({
 		email: data.get('email') as string,
 		password: data.get('password') as string,
+    // options: {
+    //   data: {
+    //     firstname: "John",
+    //     lastname: "Doe",
+    //   },
+    // },
 	});
 
 	if (error) {
