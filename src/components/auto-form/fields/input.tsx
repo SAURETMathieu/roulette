@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import {
   FormControl,
   FormControlPassword,
@@ -21,7 +19,6 @@ export default function AutoFormInput({
   const { showLabel: _showLabel, ...fieldPropsWithoutShowLabel } = fieldProps;
   const showLabel = _showLabel === undefined ? true : _showLabel;
   const type = fieldProps.type || "text";
-  const [passwordVisibility, setPasswordVisibility] = useState(false);
   return (
     <div className="flex flex-row  items-center space-x-2">
       <FormItem className="flex w-full flex-col justify-start">
@@ -41,8 +38,6 @@ export default function AutoFormInput({
           </FormControl>
         ) : (
           <FormControlPassword
-            passwordVisibility={passwordVisibility}
-            setPasswordVisibility={setPasswordVisibility}
             fieldPropsWithoutShowLabel={fieldPropsWithoutShowLabel}
           />
         )}

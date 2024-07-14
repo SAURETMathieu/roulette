@@ -130,15 +130,11 @@ FormControl.displayName = "FormControl";
 const FormControlPassword = React.forwardRef<
   React.ElementRef<typeof Slot>,
   React.ComponentPropsWithoutRef<typeof Slot> & {
-    setPasswordVisibility: (visible: boolean) => void;
-    passwordVisibility: boolean;
     fieldPropsWithoutShowLabel: React.ComponentPropsWithoutRef<typeof Input>;
   }
 >(
   (
     {
-      setPasswordVisibility,
-      passwordVisibility,
       fieldPropsWithoutShowLabel,
       ...props
     },
@@ -146,6 +142,7 @@ const FormControlPassword = React.forwardRef<
   ) => {
     const { error, formItemId, formDescriptionId, formMessageId } =
       useFormField();
+    const [passwordVisibility, setPasswordVisibility] = React.useState(false);
 
     return (
       <Slot {...props}>
