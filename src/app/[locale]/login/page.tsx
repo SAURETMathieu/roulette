@@ -1,38 +1,27 @@
-'use client';
-
-import { signInWithPassword, signUpWithPassword } from '@/src/lib/auth/actions';
-import { FormEvent, useState } from 'react';
+import CreateLoginForm from "@/src/components/forms/loginForm";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/src/components/ui/card";
 
 export default function LoginPage() {
-  const [formData, setFormData] = useState({ email: 'mathieu08800@hotmail.fr', password: '1234abcdEFGH*' });
-  const [message, setMessage] = useState<string | null>(null);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e: FormEvent, action: Function) => {
-    e.preventDefault();
-    const form = new FormData();
-    form.append('email', formData.email);
-    form.append('password', formData.password);
-
-    const result = await action(form);
-    setMessage(result?.message);
-  };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e, signInWithPassword)}>
-      <label htmlFor="email">Email:</label>
-      <input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required />
-      <label htmlFor="password">Password:</label>
-      <input id="password" name="password" type="password" value={formData.password} onChange={handleChange} required />
-      <button type="submit">Log in</button>
-      <button type="button" onClick={(e) => handleSubmit(e, signUpWithPassword)}>Sign up</button>
-      {message && <div className="error-toast">{message}</div>}
-    </form>
+    <Card className="items-between mx-auto mt-2 flex w-[95%] max-w-md flex-col">
+      <CardHeader className="">
+        <CardTitle className="relative flex justify-between gap-2 text-2xl font-medium">
+          Login
+        </CardTitle>
+        <CardDescription className="max-w-lg text-balance text-sm leading-relaxed"></CardDescription>
+      </CardHeader>
+      <CardContent>
+        <CreateLoginForm />
+      </CardContent>
+      <CardFooter></CardFooter>
+    </Card>
   );
 }
