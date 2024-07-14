@@ -17,7 +17,7 @@ export const publicRoutes: RoutePaths[] = [
 // should be disconnected to access
 export const authentificationRoutes = [
   "/login",
-  "/register",
+  "/signup",
   "/forgot-password",
   "/reset-password",
 ];
