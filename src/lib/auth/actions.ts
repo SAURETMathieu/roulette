@@ -22,6 +22,7 @@ export const signInWithPassword = async (
       message: error.message,
       error: true,
       status: error.status,
+      code: error.code,
     };
   }
   const locale = cookies().get("NEXT_LOCALE")?.value || "fr";
@@ -48,6 +49,7 @@ export const signUpWithPassword = async (
       message: error.message,
       error: true,
       status: error.status,
+      code: error.code,
     };
   }
   const locale = cookies().get("NEXT_LOCALE")?.value || "fr";
@@ -71,6 +73,7 @@ export const sentResetPassword = async (email: string) => {
       message: error.message,
       error: true,
       status: error.status,
+      code: error.code,
     };
   }
 };
@@ -86,6 +89,7 @@ export const resetPassword = async (password: string) => {
       message: error.message,
       error: true,
       status: error.status,
+      code: error.code,
     };
   }
 };
@@ -104,6 +108,7 @@ export const sendMagicLink = async (email: string) => {
       message: error.message,
       error: true,
       status: error.status,
+      code: error.code,
     };
   }
 };
