@@ -83,7 +83,7 @@ export default async function ProfilMenu() {
         <NavigationLink href="/login" aria-label={t("ariaSignin")}>
           <DropdownMenuItem>{t("signin")}</DropdownMenuItem>
         </NavigationLink>
-        <NavigationLink href="/register" aria-label={t("ariaSignup")}>
+        <NavigationLink href="/signup" aria-label={t("ariaSignup")}>
           <DropdownMenuItem>{t("signup")}</DropdownMenuItem>
         </NavigationLink>
       </DropdownMenuContent>
