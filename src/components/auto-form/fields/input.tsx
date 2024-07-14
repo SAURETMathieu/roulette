@@ -1,8 +1,11 @@
-import { createElement, useState } from "react";
-import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { useState } from "react";
 
-import { Box } from "@/components/ui/box";
-import { FormControl, FormItem, FormMessage } from "@/components/ui/form";
+import {
+  FormControl,
+  FormControlPassword,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
 import AutoFormLabel from "../common/label";
@@ -19,7 +22,6 @@ export default function AutoFormInput({
   const showLabel = _showLabel === undefined ? true : _showLabel;
   const type = fieldProps.type || "text";
   const [passwordVisibility, setPasswordVisibility] = useState(false);
-
   return (
     <div className="flex flex-row  items-center space-x-2">
       <FormItem className="flex w-full flex-col justify-start">
@@ -29,32 +31,21 @@ export default function AutoFormInput({
             isRequired={isRequired}
           />
         )}
-        <FormControl>
-          {type !== "password" ? (
+        {type !== "password" ? (
+          <FormControl>
             <Input
               className="border border-primary/40 hover:ring-1 hover:ring-ring"
               type={type}
               {...fieldPropsWithoutShowLabel}
             />
-          ) : (
-            <Box className="relative">
-              <Input
-                {...fieldPropsWithoutShowLabel}
-                type={passwordVisibility ? "text" : "password"}
-                autoComplete="on"
-                className={`border border-primary/40 pr-12 hover:ring-1 hover:ring-ring`}
-              />
-              <Box
-                className="absolute inset-y-0 right-0 flex cursor-pointer items-center p-3 text-muted-foreground"
-                onClick={() => setPasswordVisibility(!passwordVisibility)}
-              >
-                {createElement(passwordVisibility ? EyeOffIcon : EyeIcon, {
-                  className: "size-6",
-                })}
-              </Box>
-            </Box>
-          )}
-        </FormControl>
+          </FormControl>
+        ) : (
+          <FormControlPassword
+            passwordVisibility={passwordVisibility}
+            setPasswordVisibility={setPasswordVisibility}
+            fieldPropsWithoutShowLabel={fieldPropsWithoutShowLabel}
+          />
+        )}
         <AutoFormTooltip fieldConfigItem={fieldConfigItem} />
         <FormMessage />
       </FormItem>
