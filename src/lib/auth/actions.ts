@@ -9,7 +9,7 @@ import { loginFormSchema } from "@/components/formsConfig/loginFormConfig";
 import { signUpFormSchema } from "@/components/formsConfig/signUpFormConfig";
 
 export const signInWithPassword = async (
-  data: z.infer<typeof loginFormSchema>
+  data: z.infer<ReturnType<typeof loginFormSchema>>
 ) => {
   const supabase = createServer();
   const { error } = await supabase.auth.signInWithPassword({
@@ -29,7 +29,7 @@ export const signInWithPassword = async (
 };
 
 export const signUpWithPassword = async (
-  data: z.infer<typeof signUpFormSchema>
+  data: z.infer<ReturnType<typeof signUpFormSchema>>
 ) => {
   const supabase = createServer();
   const { error } = await supabase.auth.signUp({
