@@ -5,7 +5,7 @@ export const generateSignUpFormSchema = (t:any) => {
   return z.object({
     email: createEmailSchema(t),
     password: createPasswordSchema(t),
-    passwordConfirm: createPasswordSchema(t)
+    passwordConfirm: createPasswordSchema(t),
   })
   .refine(({ password, passwordConfirm }) => password === passwordConfirm, {
     path: ["passwordConfirm"],
@@ -20,6 +20,7 @@ export const fieldConfig = (t:any) => ({
     label: t("emailLabel"),
     inputProps: {
       placeholder: "john.doe@email.com",
+      autoComplete: "email",
     },
   },
   password: {
@@ -30,7 +31,7 @@ export const fieldConfig = (t:any) => ({
     },
   },
   passwordConfirm: {
-    passwordConfirm: t("confirmPasswordLabel"),
+    label: t("confirmPasswordLabel"),
     description: t("confirmPasswordDescription"),
     inputProps: {
       type: "password",

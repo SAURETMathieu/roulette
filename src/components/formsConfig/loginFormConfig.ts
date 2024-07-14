@@ -15,10 +15,11 @@ export const fieldConfig = (t:any) => ({
     label: t("emailLabel"),
     inputProps: {
       placeholder: "john.doe@email.com",
+      autoComplete: "email",
     },
   },
   password: {
-    password: t("passwordLabel"),
+    label: t("passwordLabel"),
     // description: "At least 8 characters, one uppercase, one lowercase, one digit, one special character.",
     inputProps: {
       type: "password",
