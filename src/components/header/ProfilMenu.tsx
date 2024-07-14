@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import profilePlaceholder from "@/public/placeholder-user.jpg";
 import {
@@ -8,17 +10,34 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
-import { createServer } from "@/src/lib/supabase/server";
+import { createClient } from "@/src/lib/supabase/client";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import LogOutButton from "@/components/buttons/logoutButton";
 import NavigationLink from "@/components/link/NavigationLink";
+import { useEffect, useState } from "react";
+import { Session } from "@supabase/supabase-js";
 
-export default async function ProfilMenu() {
+const supabase = createClient();
+
+export default function ProfilMenu() {
+  const [session, setSession] = useState<null|Session>(null);
+
+  const getSession = async () => {
+    const {
+      data: {
+        session
+      }
+     } = await supabase.auth.getSession();
+
+     return setSession(session);
+  }
   const t = useTranslations("Navbar");
-  const supabase = createServer();
-  const { data: session } = await supabase.auth.getUser();
+
+  useEffect(() => {
+    getSession();
+  }, []);
 
   return session?.user ? (
     <DropdownMenu>
