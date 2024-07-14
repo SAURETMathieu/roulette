@@ -5,9 +5,8 @@ import { ThemeProvider } from "@/src/context/themeProvider";
 import { fontSans } from "@/src/lib/fonts";
 import { cn } from "@/src/lib/utils";
 import { TailwindIndicator } from "@/src/utils/tailwindIndicator";
-import { NextIntlClientProvider } from "next-intl";
+import { NextIntlClientProvider, useMessages } from "next-intl";
 import {
-  getMessages,
   getTranslations,
   unstable_setRequestLocale,
 } from "next-intl/server";
@@ -50,7 +49,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
   params: { locale },
 }: Readonly<{
@@ -60,7 +59,7 @@ export default async function RootLayout({
   };
 }>) {
   unstable_setRequestLocale(locale);
-  const messages = await getMessages();
+  const messages = useMessages();
   return (
     <>
       <html lang={locale} suppressHydrationWarning>
