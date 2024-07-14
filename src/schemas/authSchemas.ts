@@ -1,29 +1,29 @@
 import { emailRegex } from "@/src/regex/";
 import { z } from "zod";
 
-export const emailSchema = z
+export const createEmailSchema = (t:any) => z
   .string({
-    required_error: "Email is required.",
+    required_error: t("emailRequired"),
   })
-  .max(320, "Wallet must be at most 320 characters.")
-  .regex(emailRegex, "Invalid email address format.");
+  .max(320, t("emailMaxLength"))
+  .regex(emailRegex, t("emailInvalidFormat"));
 
-  export const passwordSchema = z
+export const createPasswordSchema = (t:any) => z
   .string({
-    required_error: "Password can not be empty.",
+    required_error: t("passwordRequired"),
   })
   .min(8, {
-    message: "At least 8 characters.",
+    message: t("passwordMinLength"),
   })
   .regex(/(?=.*[A-Z])/, {
-    message: "At least one uppercase character.",
+    message: t("passwordUppercase"),
   })
   .regex(/(?=.*[a-z])/, {
-    message: "At least one lowercase character.",
+    message: t("passwordLowercase"),
   })
   .regex(/(?=.*\d)/, {
-    message: "At least one digit.",
+    message: t("passwordDigit"),
   })
   .regex(/[$&+,:;=?@#|'<>.^*()%!-]/, {
-    message: "At least one special character.",
+    message: t("passwordSpecialChar"),
   });

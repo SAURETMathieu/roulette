@@ -1,40 +1,40 @@
 import { z } from "zod";
-import { emailSchema, passwordSchema } from "@/src/schemas/authSchemas";
+import { createEmailSchema, createPasswordSchema } from "@/src/schemas/authSchemas";
 
-export const generateSignUpFormSchema = () => {
+export const generateSignUpFormSchema = (t:any) => {
   return z.object({
-    email: emailSchema,
-    password: passwordSchema,
-    passwordConfirm: passwordSchema
+    email: createEmailSchema(t),
+    password: createPasswordSchema(t),
+    passwordConfirm: createPasswordSchema(t)
   })
   .refine(({ password, passwordConfirm }) => password === passwordConfirm, {
     path: ["passwordConfirm"],
-    message: "Password didn't match.",
+    message: t("passwordDidntMatch"),
   });
 };
 
-export const signUpFormSchema = generateSignUpFormSchema();
+export const signUpFormSchema = (t: (key: string) => string) => generateSignUpFormSchema(t);
 
-export const fieldConfig = {
+export const fieldConfig = (t:any) => ({
   email: {
-    label: "Email",
+    label: t("emailLabel"),
     inputProps: {
       placeholder: "john.doe@email.com",
     },
   },
   password: {
-    password: "Password",
+    label: t("passwordLabel"),
     inputProps: {
       type: "password",
       placeholder: "●●●●●●●●",
     },
   },
   passwordConfirm: {
-    passwordConfirm: "passwordConfirm",
-    description: "Passwords should be at least 8 characters, one uppercase, one lowercase, one digit, one special character.",
+    passwordConfirm: t("confirmPasswordLabel"),
+    description: t("confirmPasswordDescription"),
     inputProps: {
       type: "password",
       placeholder: "●●●●●●●●",
     },
   },
-};
+});

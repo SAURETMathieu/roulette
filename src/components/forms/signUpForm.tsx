@@ -9,11 +9,13 @@ import {
 } from "@/components/formsConfig/signUpFormConfig";
 import { useTransition } from "react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 const CreateSignupForm = () => {
+  const t = useTranslations("Forms");
   const [isPending, startTransition] = useTransition();
 
-  const handleSubmit = async (data: z.infer<typeof signUpFormSchema>) => {
+  const handleSubmit = async (data: z.infer<ReturnType<typeof signUpFormSchema>>) => {
     startTransition(async () => {
       const result = await signUpWithPassword(data);
       if (result?.error) {
@@ -24,8 +26,8 @@ const CreateSignupForm = () => {
 
   return (
         <AutoForm
-          formSchema={signUpFormSchema}
-          fieldConfig={fieldConfig}
+          formSchema={signUpFormSchema(t)}
+          fieldConfig={fieldConfig(t)}
           onSubmit={(values) => handleSubmit(values)}
           isDisabled={isPending}
         ></AutoForm>

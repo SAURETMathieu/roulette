@@ -3,7 +3,9 @@
     "home": "Accueil - Roulette",
     "tables": "Tables",
     "dealers": "Croupiers",
-    "draws": "Tirages"
+    "draws": "Tirages",
+    "signup": "Inscription",
+    "login": "Connexion"
   },
   "LocaleMetadata": {
     "title": "Roulette",
@@ -62,5 +64,48 @@
     "profile": "Profil",
     "description": "Configuration de l'application",
     "help": "Aide"
+  },
+  "SignUp": {
+    "title": "Inscription",
+    "description": "Déjà inscrit ?",
+    "submit": "S'inscrire",
+    "signinLink": "Connectez-vous",
+    "ariaSignin": "Lien vers la page de connexion",
+    "error": "Une erreur est survenue lors de l'inscription",
+    "footer": "En vous inscrivant, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialité."
+  },
+  "Login": {
+    "title": "Connexion",
+    "description": "Pas encore inscrit ?",
+    "submit": "Se connecter",
+    "signupLink": "Inscrivez-vous",
+    "ariaSignup": "Lien vers la page d'inscription",
+    "error": "Une erreur est survenue lors de la connexion",
+    "footer": "En vous connectant, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialité."
+  },
+  "Forms":{
+    "required": "Ce champ est requis",
+    "emailRequired": "Veuillez saisir une adresse email",
+    "passwordRequired": "Veuillez saisir un mot de passe",
+    "confirmPasswordRequired": "Veuillez confirmer votre mot de passe",
+
+    "emailLabel": "Adresse email",
+    "passwordLabel": "Mot de passe",
+    "confirmPasswordLabel": "Confirmer le mot de passe",
+
+    "confirmPasswordDescription": "Votre mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.",
+
+    "emailInvalidFormat": "L'adresse email n'est pas au bon format",
+    "emailMaxLength": "L'adresse email ne doit pas dépasser 255 caractères",
+
+    "passwordMaxLength": "Le mot de passe ne doit pas dépasser 255 caractères",
+    "passwordMinLength": "Le mot de passe doit contenir au moins 8 caractères",
+    "passwordUppercase": "Le mot de passe doit contenir au moins une lettre majuscule",
+    "passwordLowercase": "Le mot de passe doit contenir au moins une lettre minuscule",
+    "passwordDigit": "Le mot de passe doit contenir au moins un chiffre",
+    "passwordSpecialChar": "Le mot de passe doit contenir au moins un caractère spécial",
+    "passwordDidntMatch": "Les mots de passe ne correspondent pas",
+
+    "usernameLength": "Le nom d'utilisateur doit contenir entre 2 et 255 caractères"
   }
 }

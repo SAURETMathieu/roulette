@@ -7,21 +7,26 @@ import {
   CardHeader,
   CardTitle,
 } from "@/src/components/ui/card";
+import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import Login from "@/src/components/pages/Login";
 
-export default function LoginPage() {
+type PageProps = {
+  params: { locale: string };
+};
 
+export async function generateMetadata({
+  params: { locale },
+}: PageProps): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: "TitlePages" });
+  return {
+    title: t("login"),
+  };
+}
+
+export default async function LoginPage({ params: { locale } }: PageProps) {
+  const t = await getTranslations({ locale, namespace: "Login" });
   return (
-    <Card className="items-between mx-auto mt-2 flex w-[95%] max-w-md flex-col">
-      <CardHeader className="">
-        <CardTitle className="relative flex justify-between gap-2 text-2xl font-medium">
-          Login
-        </CardTitle>
-        <CardDescription className="max-w-lg text-balance text-sm leading-relaxed"></CardDescription>
-      </CardHeader>
-      <CardContent>
-        <CreateLoginForm />
-      </CardContent>
-      <CardFooter></CardFooter>
-    </Card>
+    <Login t={t}/>
   );
 }

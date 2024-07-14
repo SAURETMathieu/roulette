@@ -1,27 +1,24 @@
-import CreateSignUpForm from "@/src/components/forms/signUpForm";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/src/components/ui/card";
+import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import SignUp from "@/src/components/pages/SignUp";
 
-export default function SignUpPage() {
+type PageProps = {
+  params: { locale: string };
+};
+
+export async function generateMetadata({
+  params: { locale },
+}: PageProps): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: "TitlePages" });
+  return {
+    title: t("signup"),
+  };
+}
+
+export default async function SignUpPage({ params: { locale } }: PageProps) {
+  const t = await getTranslations({ locale, namespace: "SignUp" });
 
   return (
-    <Card className="items-between mx-auto mt-2 flex w-[95%] max-w-md flex-col">
-      <CardHeader className="">
-        <CardTitle className="relative flex justify-between gap-2 text-2xl font-medium">
-          Register
-        </CardTitle>
-        <CardDescription className="max-w-lg text-balance text-sm leading-relaxed"></CardDescription>
-      </CardHeader>
-      <CardContent>
-        <CreateSignUpForm />
-      </CardContent>
-      <CardFooter></CardFooter>
-    </Card>
+    <SignUp t={t}/>
   );
 }

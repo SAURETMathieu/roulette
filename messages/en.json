@@ -3,7 +3,9 @@
     "home": "Home - Roulette",
     "tables": "Tables",
     "dealers": "Dealers",
-    "draws": "Draws"
+    "draws": "Draws",
+    "signup": "Sign Up",
+    "login": "Sign In"
   },
   "LocaleMetadata":{
     "title": "Roulette",
@@ -62,5 +64,48 @@
     "profile": "Profile",
     "description": "Application configuration",
     "help": "Help"
+  },
+  "SignUp": {
+    "title": "Sign up",
+    "description": "Already have an account ?",
+    "submit": "Sign up",
+    "signinLink": "Sign in",
+    "ariaSignin": "Link to sign in page",
+    "error": "An error occurred while signing up",
+    "footer": "By signing in, you agree to our Terms of Service and Privacy Policy."
+  },
+  "Login": {
+    "title": "Sign in",
+    "description": "Don't have an account ?",
+    "submit": "Sign in",
+    "signupLink": "Sign up",
+    "ariaSignup": "Link to sign up page",
+    "error": "An error occurred while signing in",
+    "footer": "By signing in, you agree to our Terms of Service and Privacy Policy."
+  },
+  "Forms": {
+    "required": "This field is required",
+    "emailRequired": "Please enter an email address",
+    "passwordRequired": "Please enter a password",
+    "confirmPasswordRequired": "Please confirm your password",
+
+    "emailLabel": "Email address",
+    "passwordLabel": "Password",
+    "confirmPasswordLabel": "Confirm password",
+
+    "confirmPasswordDescription": "Your password must contain at least 8 characters, one uppercase letter, one lowercase letter, one digit, and one special character.",
+
+    "emailInvalidFormat": "The email address is not in the correct format",
+    "emailMaxLength": "The email address must not exceed 255 characters",
+
+    "passwordMaxLength": "The password must not exceed 255 characters",
+    "passwordMinLength": "The password must contain at least 8 characters",
+    "passwordUppercase": "The password must contain at least one uppercase letter",
+    "passwordLowercase": "The password must contain at least one lowercase letter",
+    "passwordDigit": "The password must contain at least one digit",
+    "passwordSpecialChar": "The password must contain at least one special character",
+    "passwordDidntMatch": "The passwords do not match",
+
+    "usernameLength": "The username must be between 2 and 255 characters"
   }
 }

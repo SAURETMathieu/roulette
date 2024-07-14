@@ -9,11 +9,13 @@ import {
 } from "@/components/formsConfig/loginFormConfig";
 import { useTransition } from "react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 const CreateLoginForm = () => {
+  const t = useTranslations("Forms");
   const [isPending, startTransition] = useTransition();
 
-  const handleSubmit = async (data: z.infer<typeof loginFormSchema>) => {
+  const handleSubmit = async (data: z.infer<ReturnType<typeof loginFormSchema>>) => {
     startTransition(async () => {
       const result = await signInWithPassword(data);
       if (result?.error) {
@@ -24,8 +26,8 @@ const CreateLoginForm = () => {
 
   return (
         <AutoForm
-          formSchema={loginFormSchema}
-          fieldConfig={fieldConfig}
+          formSchema={loginFormSchema(t)}
+          fieldConfig={fieldConfig(t)}
           onSubmit={(values) => handleSubmit(values)}
           isDisabled={isPending}
         ></AutoForm>
