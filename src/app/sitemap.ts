@@ -14,20 +14,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   //TODO test with database
-  const keyToFetch = dynamicsKeys.map((key) => {
-    if (key.includes("[")) {
-      const matches = key.match(/\[([^\]]+)\]/g);
+  // const keyToFetch = dynamicsKeys.map((key) => {
+  //   if (key.includes("[")) {
+  //     const matches = key.match(/\[([^\]]+)\]/g);
 
-      const extracted = matches?.map(match => match.slice(1, -1));
+  //     const extracted = matches?.map(match => match.slice(1, -1));
 
-      return {
-        params:extracted,
-        url: key
-      };
-    }
-  });
+  //     return {
+  //       params:extracted,
+  //       url: key
+  //     };
+  //   }
+  // });
 
-  console.log("tofetch",keyToFetch);
+  // console.log("tofetch",keyToFetch);
 
   const sitemap = keys.map((key) => {
     if (key.includes("[")) {

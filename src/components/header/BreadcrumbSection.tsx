@@ -33,12 +33,12 @@ export default function BreadcrumbSection() {
     path: string,
     params: Record<string, any>
   ): string => {
-    return Object.keys(params).reduce((updatedPath, param) => {
+    return Object.keys(params)?.reduce((updatedPath, param) => {
       const placeholder = `[${param}]`;
       return updatedPath.includes(placeholder)
         ? updatedPath.replace(new RegExp(`\\[${param}\\]`, "g"), params[param])
         : updatedPath;
-    }, path);
+    }, path) ?? path;
   };
 
   // Split the path into an array of path names
