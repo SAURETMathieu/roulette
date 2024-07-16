@@ -3,13 +3,13 @@ import { updateSession } from "@/src/lib/supabase/middleware";
 import { authentificationRoutes, privateRoutes } from "@/src/routes";
 import createMiddleware from "next-intl/middleware";
 
-import { localePrefix, locales, pathnames } from "./config";
+import { localePrefix, locales, allPathnames } from "./config";
 
 const handleI18nRouting = createMiddleware({
   localePrefix: localePrefix || "always",
   locales: locales || ["fr", "en"],
   defaultLocale: "fr",
-  pathnames,
+  pathnames:allPathnames,
 });
 
 export async function middleware(request: NextRequest) {

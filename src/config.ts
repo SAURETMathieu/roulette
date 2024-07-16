@@ -5,7 +5,7 @@ export const locales = ["fr", "en"] as const;
 
 export type RouteType = "public" | "auth" | "private" | "api";
 
-export const pathnames = {
+export const staticPathnames = {
   "/": "/",
   "/tables": {
     en: "/tables",
@@ -64,6 +64,15 @@ export const pathnames = {
     fr: "/support",
   },
 } satisfies Pathnames<typeof locales>;
+
+export const dynamicPathNames = {
+  "/tables/[tableId]/dealers": {
+    en: "/tables/[tableId]/dealers",
+    fr: "/tables/[tableId]/croupiers",
+  },
+} satisfies Pathnames<typeof locales>;
+
+export const allPathnames = { ...staticPathnames, ...dynamicPathNames };
 
 export const localePrefix = "always";
 

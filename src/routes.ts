@@ -1,6 +1,6 @@
-import { pathnames } from "./config";
+import { staticPathnames } from "./config";
 
-type RoutePaths = keyof typeof pathnames;
+type RoutePaths = keyof typeof staticPathnames;
 
 // all can access
 export const publicRoutes: RoutePaths[] = [

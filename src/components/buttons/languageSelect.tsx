@@ -13,6 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {useParams} from 'next/navigation';
 
 function LanguageSection() {
   const locale = useLocale();
@@ -20,10 +21,12 @@ function LanguageSection() {
   const t = useTranslations("ThemeSwitcher");
   const router = useRouter();
   const pathname = usePathname();
+  const params = useParams();
 
   const handleLanguage = (newLanguage: string) => {
     router.replace(
-      {pathname},
+      //@ts-ignore
+      {pathname, params},
       {locale: newLanguage}
     );
     setLanguage(newLanguage);
