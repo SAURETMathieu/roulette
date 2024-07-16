@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { pathnames } from "@/src/config";
+import { useParams } from "next/navigation";
+import { allPathnames } from "@/src/config";
 import { usePathname } from "@/src/navigation";
 import { Home } from "lucide-react";
 import { useLocale } from "next-intl";
@@ -25,17 +26,34 @@ import {
 export default function BreadcrumbSection() {
   const path = usePathname();
   const locale = useLocale();
+  const params = useParams();
+
+  // Replace the path parameters with the actual values
+  const replaceParamsInPath = (
+    path: string,
+    params: Record<string, any>
+  ): string => {
+    return Object.keys(params).reduce((updatedPath, param) => {
+      const placeholder = `[${param}]`;
+      return updatedPath.includes(placeholder)
+        ? updatedPath.replace(new RegExp(`\\[${param}\\]`, "g"), params[param])
+        : updatedPath;
+    }, path);
+  };
 
   // Split the path into an array of path names
-  const currentPathNames: string[] = path.split("/").filter((p) => p);
+  let currentPathNames: string[] = path.split("/").filter((p) => p);
+
+  // Replace the path parameters with the actual values
+  currentPathNames = currentPathNames.map((pathname) => replaceParamsInPath(pathname, params));
 
   // Translate the path names and remove slashes
   const currentPathNamesTranslated = currentPathNames
     ?.map((name: string) => {
-      if (pathnames[("/" + name) as keyof typeof pathnames]) {
+      if (allPathnames[("/" + name) as keyof typeof allPathnames]) {
         return (
           //@ts-ignore
-          pathnames[("/" + name) as keyof typeof pathnames][locale] ?? name
+          allPathnames[("/" + name) as keyof typeof allPathnames][locale] ?? name
         );
       }
       return name;
@@ -51,7 +69,8 @@ export default function BreadcrumbSection() {
   // Generate the full path up to the given index
   const generateFullPath = (index: number) => {
     if (index >= 0 && index < currentPathNames.length) {
-      return "/" + currentPathNames.slice(0, index + 1).join("/");
+      const path = currentPathNames.slice(0, index + 1).join("/");
+      return "/" + path;
     }
     return "/";
   };
