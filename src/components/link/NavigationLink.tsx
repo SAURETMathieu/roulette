@@ -1,15 +1,14 @@
 "use client";
 
 import { ComponentProps, forwardRef } from "react";
-import { useSelectedLayoutSegment } from "next/navigation";
-import { Link, type AppPathnames } from "@/src/navigation";
+import { usePathname } from "@/src/navigation";
+import { Link } from "@/src/navigation";
 
 const NavigationLink = forwardRef<
   HTMLAnchorElement,
-  ComponentProps<typeof Link<AppPathnames>>
+  ComponentProps<typeof Link<any>>
 >(({ href, ...rest }, ref) => {
-  const selectedLayoutSegment = useSelectedLayoutSegment();
-  const pathname = selectedLayoutSegment ? `/${selectedLayoutSegment}` : "/";
+  const pathname = usePathname();
   const isActive = pathname === href;
 
   return (
