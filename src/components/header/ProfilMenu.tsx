@@ -10,36 +10,18 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
-import { createClient } from "@/src/lib/supabase/client";
+import { useAuth } from "@/src/context/userProvider";
 import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import LogOutButton from "@/components/buttons/logoutButton";
 import NavigationLink from "@/components/link/NavigationLink";
-import { useEffect, useState } from "react";
-import { Session } from "@supabase/supabase-js";
-
-const supabase = createClient();
 
 export default function ProfilMenu() {
-  const [session, setSession] = useState<null|Session>(null);
-
-  const getSession = async () => {
-    const {
-      data: {
-        session
-      }
-     } = await supabase.auth.getSession();
-
-     return setSession(session);
-  }
+  const { user } = useAuth();
   const t = useTranslations("Navbar");
 
-  useEffect(() => {
-    getSession();
-  }, []);
-
-  return session?.user ? (
+  return user ? (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
@@ -59,7 +41,7 @@ export default function ProfilMenu() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>
-          {session.user.email ?? "email@gmail.com"}
+          {user?.email ?? "email@gmail.com"}
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <NavigationLink href="/profile" aria-label={t("ariaProfile")}>
