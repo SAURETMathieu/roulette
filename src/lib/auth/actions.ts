@@ -7,6 +7,7 @@ import { z } from "zod";
 
 import { loginFormSchema } from "@/components/formsConfig/loginFormConfig";
 import { signUpFormSchema } from "@/components/formsConfig/signUpFormConfig";
+import { revalidatePath } from "next/cache";
 
 export const signInWithPassword = async (
   data: z.infer<ReturnType<typeof loginFormSchema>>
@@ -76,6 +77,8 @@ export const sentResetPassword = async (email: string) => {
       code: error.code,
     };
   }
+  revalidatePath('/', 'layout')
+  redirect('/')
 };
 
 export const resetPassword = async (password: string) => {
