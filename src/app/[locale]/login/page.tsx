@@ -1,15 +1,6 @@
-import CreateLoginForm from "@/src/components/forms/loginForm";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/src/components/ui/card";
 import { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
 import Login from "@/src/components/pages/Login";
+import { getTranslations } from "next-intl/server";
 
 type PageProps = {
   params: { locale: string };
@@ -26,7 +17,5 @@ export async function generateMetadata({
 
 export default async function LoginPage({ params: { locale } }: PageProps) {
   const t = await getTranslations({ locale, namespace: "Login" });
-  return (
-    <Login t={t}/>
-  );
+  return <Login t={t} />;
 }
