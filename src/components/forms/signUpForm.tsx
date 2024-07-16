@@ -1,37 +1,53 @@
 "use client";
 
+import { useTransition } from "react";
+import { useRouter } from "next/navigation";
 import AutoForm from "@/src/components/auto-form";
-import { signUpWithPassword } from "@/src/lib/auth/actions";
-import { z } from 'zod';
+import { supabaseClient } from "@/src/lib/supabase/client";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
+import { z } from "zod";
+
 import {
   fieldConfig,
   signUpFormSchema,
 } from "@/components/formsConfig/signUpFormConfig";
-import { useTransition } from "react";
-import { toast } from "sonner";
-import { useTranslations } from "next-intl";
 
 const CreateSignupForm = () => {
   const t = useTranslations("Forms");
   const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
-  const handleSubmit = async (data: z.infer<ReturnType<typeof signUpFormSchema>>) => {
+  const handleSubmit = async (
+    data: z.infer<ReturnType<typeof signUpFormSchema>>
+  ) => {
     startTransition(async () => {
-      const result = await signUpWithPassword(data);
-      if (result?.error) {
-        toast.error(result.message);
+      const { error } = await supabaseClient.auth.signUp({
+        email: data.email,
+        password: data.password,
+        // options: {
+        //   data: {
+        //     firstname: "John",
+        //     lastname: "Doe",
+        //   },
+        // },
+      });
+      if (error) {
+        toast.error(error.message);
+      } else {
+        router.push("/");
       }
     });
   };
 
   return (
-        <AutoForm
-          formSchema={signUpFormSchema(t)}
-          fieldConfig={fieldConfig(t)}
-          onSubmit={(values) => handleSubmit(values)}
-          isDisabled={isPending}
-        ></AutoForm>
+    <AutoForm
+      formSchema={signUpFormSchema(t)}
+      fieldConfig={fieldConfig(t)}
+      onSubmit={(values) => handleSubmit(values)}
+      isDisabled={isPending}
+    ></AutoForm>
   );
-}
+};
 
 export default CreateSignupForm;
